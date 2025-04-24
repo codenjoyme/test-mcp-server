@@ -35,10 +35,10 @@ public class Application {
                                 "  }\n" +
                                 "}"),
                         (exchange, arguments) -> {
-                            List<Presentation> presentations = new PresentationTools().getPresentations();
+                            List<String> content = List.of("String1", "String2", "String3");
                             List<McpSchema.Content> contents = new ArrayList<>();
-                            for (Presentation presentation : presentations) {
-                                contents.add(new McpSchema.TextContent(presentation.toString()));
+                            for (String line : content) {
+                                contents.add(new McpSchema.TextContent(line));
                             }
                             return new McpSchema.CallToolResult(contents, false);
                         }
