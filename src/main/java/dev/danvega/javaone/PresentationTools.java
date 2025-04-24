@@ -26,16 +26,18 @@ public class PresentationTools {
     }
 
     public List<Presentation> getPresentationsByYear(int year) {
-        return presentations.stream().filter(p -> p.year() == year).toList();
+        return presentations.stream()
+                .filter(p -> p.getYear() == year)
+                .collect(Collectors.toList());
     }
 
     public List<Map<String, Object>> getPresentationsAsMapList() {
         return presentations.stream()
                 .map(p -> {
                     Map<String, Object> map = new HashMap<>();
-                    map.put("title", p.title());
-                    map.put("url", p.url());
-                    map.put("year", p.year());
+                    map.put("title", p.getTitle());
+                    map.put("url", p.getUrl());
+                    map.put("year", p.getYear());
                     return map;
                 })
                 .collect(Collectors.toList());
