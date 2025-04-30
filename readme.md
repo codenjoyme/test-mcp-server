@@ -1,5 +1,10 @@
 # MCP Server
 
+## Thanks to the Dan Vega
+
+This project is forked from [https://github.com/danvega/javaone-mcp](https://github.com/danvega/javaone-mcp)
+[https://www.youtube.com/watch?v=w5YVHG1j3Co](YouTube video is here)
+
 ## A Model Context Protocol Server 
 
 JavaOne MCP Server is a lightweight Java application that implements the 
