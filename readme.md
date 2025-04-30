@@ -1,12 +1,15 @@
-# JavaOne MCP Server
+# MCP Server
 
-## A Model Context Protocol Server for Accessing JavaOne Presentations
+## A Model Context Protocol Server 
 
-JavaOne MCP Server is a lightweight Java application that implements the Model Context Protocol (MCP), allowing AI models to access information about JavaOne conference presentations. This server exposes presentation data through standardized MCP tools, making it easy to integrate with AI assistants that support the protocol.
+JavaOne MCP Server is a lightweight Java application that implements the 
+Model Context Protocol (MCP), allowing AI models to access information. 
+This server exposes data through standardized MCP tools, making it easy 
+to integrate with AI assistants that support the protocol.
 
 ## Project Requirements
 
-- Java 24
+- Java 18
 - Maven 3.8+
 - Model Context Protocol SDK 0.9.0
 - SLF4J for logging
@@ -48,18 +51,17 @@ This will create an executable JAR file in the `target` directory with all depen
 Execute the JAR file to start the MCP server:
 
 ```bash
-java -jar target/javaone-mcp-0.0.2.jar
+java -jar target/test-mcp-server-0.0.1.jar
 ```
 
-The application starts an MCP server that communicates via standard input/output (STDIO) and provides access to JavaOne presentation data.
+The application starts an MCP server that communicates via standard 
+input/output (STDIO) and provides access to data.
 
 ## Understanding the Project Structure
 
 ### Core Components
 
 - **Application.java**: Main entry point that configures and starts the MCP server
-- **Presentation.java**: Data model representing a JavaOne presentation
-- **PresentationTools.java**: Service that provides presentation data and operations
 
 ### MCP Server Configuration
 
@@ -71,7 +73,7 @@ The server is configured with:
 
 ```java
 McpSyncServer syncServer = McpServer.sync(transportProvider)
-    .serverInfo("javaone-mcp-server", "0.0.1")
+    .serverInfo("test-mcp-server", "0.0.1")
     .capabilities(McpSchema.ServerCapabilities.builder()
             .tools(true)
             .logging()
@@ -84,22 +86,23 @@ McpSyncServer syncServer = McpServer.sync(transportProvider)
 
 The server exposes the following MCP tool:
 
-- **get_presentations**: Returns a list of all JavaOne presentations
+- **get_list**: Returns a list of all items by categories
 
 ## Testing with MCP Inspector
 
-The MCP Inspector is a helpful tool for testing and debugging your MCP server. Follow these steps to test your JavaOne MCP Server:
+The MCP Inspector is a helpful tool for testing and debugging your MCP server. 
+Follow these steps to test your MCP Server:
 
 1. Install Node.js if you haven't already
 2. Navigate to your project directory and get the absolute path to the JAR file:
 
 ```bash
 # On Linux/macOS
-FULL_PATH=$(pwd)/target/javaone-mcp-0.0.2.jar
+FULL_PATH=$(pwd)/target/test-mcp-server-0.0.1.jar
 echo $FULL_PATH
 
 # On Windows PowerShell
-$FULL_PATH="$(Get-Location)\target\javaone-mcp-0.0.2.jar"
+$FULL_PATH="$(Get-Location)\target\test-mcp-server-0.0.1.jar"
 echo $FULL_PATH
 ```
 
@@ -111,7 +114,7 @@ npx @modelcontextprotocol/inspector java -jar $FULL_PATH
 
 4. In the Inspector interface:
     - Verify the server connection in the connection pane
-    - Navigate to the "Tools" tab to see the `get_presentations` tool
+    - Navigate to the "Tools" tab to see the `get_list` tool
     - Test the tool by clicking on it and viewing the response
     - Monitor logs in the Notifications pane
 
@@ -123,11 +126,11 @@ To use this MCP server with Claude Desktop, add the following configuration:
 
 ```bash
 # On Linux/macOS
-FULL_PATH=$(pwd)/target/javaone-mcp-0.0.2.jar
+FULL_PATH=$(pwd)/target/test-mcp-server-0.0.1.jar
 echo $FULL_PATH
 
 # On Windows PowerShell
-$FULL_PATH="$(Get-Location)\target\javaone-mcp-0.0.2.jar"
+$FULL_PATH="$(Get-Location)\target\test-mcp-server-0.0.1.jar"
 echo $FULL_PATH
 ```
 
@@ -147,24 +150,6 @@ echo $FULL_PATH
 }
 ```
 
-## Extending the Project
-
-You can enhance this project in several ways:
-
-### Adding More Presentation Data
-
-Modify the `PresentationTools` class to include additional presentations:
-
-```java
-// In the PresentationTools constructor
-var newPresentation = new Presentation(
-    "Spring Boot 3.5 Deep Dive", 
-    "https://example.com/spring-boot", 
-    2025
-);
-this.presentations.add(newPresentation);
-```
-
 ### Creating Additional MCP Tools
 
 Implement more tools to expose different functionality:
@@ -172,7 +157,7 @@ Implement more tools to expose different functionality:
 ```java
 // Example of adding a tool to search presentations by title
 var searchToolSpec = new McpServerFeatures.SyncToolSpecification(
-    new McpSchema.Tool("search_presentations", "Search presentations by title", searchSchema),
+    new McpSchema.Tool("search_items", "Search items by title", searchSchema),
     (exchange, arguments) -> {
         String query = arguments.get("query").asText();
         List<Presentation> results = presentationTools.searchPresentations(query);

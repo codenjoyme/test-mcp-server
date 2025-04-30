@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.danvega</groupId>
-    <artifactId>javaone-mcp</artifactId>
-    <version>0.0.2</version>
+    <artifactId>test-mcp-server</artifactId>
+    <version>0.0.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -15,10 +15,14 @@
     </properties>
 
     <dependencies>
+        <!-- Api to interact with Model Context Protocol -->
         <dependency>
             <groupId>io.modelcontextprotocol.sdk</groupId>
             <artifactId>mcp</artifactId>
         </dependency>
+
+        <!-- Simple Logger show only System.out.println messages,
+                 other things will be as errors -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -29,6 +33,7 @@
         </dependency>
     </dependencies>
 
+    <!-- this is about the version of the dependencies -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -49,6 +54,7 @@
     </dependencyManagement>
 
     <build>
+        <!-- this is how we build a `fat` jar -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
