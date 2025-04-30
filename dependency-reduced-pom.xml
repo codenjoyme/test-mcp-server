@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>dev.danvega.javaone.Application</mainClass>
+                  <mainClass>com.codenjoy.Application</mainClass>
                 </transformer>
               </transformers>
             </configuration>

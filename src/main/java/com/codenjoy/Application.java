@@ -1,4 +1,4 @@
-package dev.danvega.javaone;
+package com.codenjoy;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.modelcontextprotocol.server.McpServer;
