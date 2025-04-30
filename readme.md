@@ -49,6 +49,8 @@ After cloning the repository, you can build the project using Maven:
 mvn clean package
 ```
 
+Or run `build-jar` run configuration in IntelliJ IDEA.
+
 This will create an executable JAR file in the `target` directory with all dependencies included.
 
 ## How to Run the Application
